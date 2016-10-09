@@ -46,5 +46,25 @@ public class ProcessScheduler{
 		 ioTime, lowTime,upTime, nPolitica);
 	}
 
-
+	public ProcessScheduler(){}
+	public ProcessScheduler(double aTime, double lTime, double cTime,
+	 		 double ioTime, double lowTime, double upTime, String nPolitica) {
+        this.aTime = aTime;
+        this.lTime = lTime;
+        this.cTime = cTime;
+        this.ioTime = ioTime;
+        this.lowTime = lowTime;
+        this.upTime = upTime;
+        switch(nPolitica){
+        	case FIRST_COME_FIRST_SERVED:
+        		this.politica= new FistComeFirstServed();
+        		break;
+        	case LAST_COME_FIRST_SERVED:
+        		this.politica=new LastComeFirstServed();
+        		break;
+        	case RR:
+        		this.politica=new RoundRobin(quantum);
+        		break;
+    	}
+    }
 }
