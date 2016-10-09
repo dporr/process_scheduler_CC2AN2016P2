@@ -67,4 +67,27 @@ public class ProcessScheduler{
         		break;
     	}
     }
+
+   	/*
+	@return SimpleProcess un proceso de tipo aleatorio.
+	*/
+	private SimpleProcess createProcess(){
+		SimpleProcess process;
+		Random rand = new Random();
+		switch(rand.nextInt()){
+			case 0:
+				process = new IOProcess(++pid,ioTime);
+				break;
+			case 1:
+				process = new ArithmeticProcess(++pid,ioTime);
+				break;
+			case 2:
+				process = new LoopProcess(++pid,ioTime);
+				break;
+			default:
+				process = new ConditionalProcess(++pid,ioTime);
+		}
+		return process;
+	}
+
 }
