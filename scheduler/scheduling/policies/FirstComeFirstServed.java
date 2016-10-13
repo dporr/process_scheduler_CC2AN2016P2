@@ -25,10 +25,6 @@ public class FirstComeFirstServed extends Policy
 								 implements Enqueable{
 
 protected static ConcurrentLinkedQueue<SimpleProcess> cola;
-/*Cola que nos sirve para clonar la original y poder hacer referencia al siguiente 
-  proceso a ser atendido*/
-protected static ConcurrentLinkedQueue<SimpleProcess> colaClon;
-	
 	/** @ Constructor que inicializa la cola vacia e inicializa los campos de la clase**/
 	public FirstComeFirstServed(){
 		super();
@@ -52,11 +48,10 @@ public synchronized void add(SimpleProcess p){
 			System.out.println("Se ha removido un proceso de la cola");
 			System.out.println(cola.poll().toString());
 			this.size--;
+			return;
 		}
-			else {
 				System.out.println("No se ha removido proceso, COLA VACIA");
-			}
-}	
+	}	
 	/** Devuelve el siguiente proceso a ser atendido. No lo remueve de la
             cola
             @return devuelve la instancia de el SimpleProcess siguiente a 
@@ -64,14 +59,10 @@ public synchronized void add(SimpleProcess p){
         **/
   
 	public synchronized SimpleProcess next(){
-		SimpleProcess result = null;
 		if (this.cola.size() == 0) {
 			System.out.println("Cola Vacia");
+			return null;
 		}
-			else{
-				colaClon = cola;
-				colaClon.poll();
-				result =  colaClon.peek();
+			return cola.peek();
 		}
-	return result;}
 }
