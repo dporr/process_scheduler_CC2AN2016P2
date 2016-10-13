@@ -26,8 +26,6 @@ public class LastComeFirstServed extends Policy
 								 implements Enqueable{
 
 public static Stack<SimpleProcess> pila;
-//Pila que nos sirve para hacer referencia al siguiente proceso a ser atendido
-public static Stack<SimpleProcess> pilaClon;
 	/** Constructor que inicializa la pila vacia e inicializa los campos
 		heredados de la super clase**/
 	public LastComeFirstServed(){
@@ -64,15 +62,10 @@ public synchronized void remove(){
             ser atendido. 
         **/
 public synchronized SimpleProcess next(){
-	SimpleProcess result = null;
 	if (this.pila.size()==0) {
-		System.out.println("Pila vacia");
+		return null;
 	}
-		else{
-			pilaClon = pila;
-			pilaClon.pop();
-			result = pilaClon.peek();
-		}
-	return result;}
+			return pila.peek();
+	}
 
 }
