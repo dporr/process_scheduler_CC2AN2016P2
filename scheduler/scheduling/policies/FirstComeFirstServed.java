@@ -33,7 +33,7 @@ protected static ConcurrentLinkedQueue<SimpleProcess> cola;
 
 	/** @void metodo void que agrega una instancia de SimpleProcess a la cola **/
 public synchronized void add(SimpleProcess p){
-	System.out.println("Se ha ingresado un nuevo proceso a la cola");
+	System.out.print("Se ha ingresado un nuevo proceso a la cola:");
 	cola.add(p);
 	this.size++;
 	this.totalProcesses++;
@@ -45,12 +45,9 @@ public synchronized void add(SimpleProcess p){
 
 	public synchronized void remove(){
 		if (cola.size() != 0) {
-			System.out.println("Se ha removido un proceso de la cola");
-			System.out.println(cola.poll().toString());
+			cola.poll();
 			this.size--;
-			return;
 		}
-				System.out.println("No se ha removido proceso, COLA VACIA");
 	}	
 	/** Devuelve el siguiente proceso a ser atendido. No lo remueve de la
             cola
@@ -59,10 +56,7 @@ public synchronized void add(SimpleProcess p){
         **/
   
 	public synchronized SimpleProcess next(){
-		if (this.cola.size() == 0) {
-			System.out.println("Cola Vacia");
-			return null;
-		}
+		if (this.cola.size() == 0) return null;
 			return cola.peek();
 		}
 }
