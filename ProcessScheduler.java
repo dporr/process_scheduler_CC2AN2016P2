@@ -221,6 +221,7 @@ class RandomProcessGenerator extends Thread{
 			long t = (long)((lowTime + ((upTime - lowTime) * r.nextDouble()))*1000);
 			processor.getPolitica().add(createProcess());
 			processor.addProceso();
+			System.out.print("Estado de la cola de proceso: "+processor.getPolitica().toString());
 			try{
 				this.sleep(t);
 			}catch(InterruptedException e){
