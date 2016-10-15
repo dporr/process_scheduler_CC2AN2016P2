@@ -92,7 +92,7 @@ public class ProcessScheduler extends Thread{
        if(!p.equalsIgnoreCase(RR)){
        		simplePolicy();
        	}else{
-       		rrPolicy();
+       		//rrPolicy();
        	}
        }
     /**private void rrPolicy(){
@@ -128,7 +128,7 @@ public class ProcessScheduler extends Thread{
 			}
        	}while(true);
     }**/
-    
+
     private void simplePolicy(){
        		do{
        			long t=0;
