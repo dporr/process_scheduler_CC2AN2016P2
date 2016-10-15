@@ -37,7 +37,7 @@ public static Stack<SimpleProcess> pila;
             @param p Proceso a ingresar en la pila de la politica 
         **/
 public synchronized void add(SimpleProcess p){
-	System.out.println("Se ha ingresado un nuevo proceso a la pila");
+	System.out.print("Se ha ingresado un nuevo proceso a la pila:");
 	pila.push(p);
 	this.size++;
 	this.totalProcesses++;
@@ -45,27 +45,33 @@ public synchronized void add(SimpleProcess p){
 }
 	/**@void metodo void que remueve el ultimo proceso que se ingreso
 		hasta ese momento a la pila **/
-public synchronized void remove(){
-	if (this.pila.size()!=0) {
-		System.out.println("Se ha removido un proceso de la pila");
-		System.out.println(pila.pop().toString());
-		this.size--;
-	}
+	public synchronized void remove(){
+		if (this.pila.size()!=0) {
+			System.out.print("Se ha removido un proceso de la pila:");
+			System.out.println(pila.pop().toString());
+			this.size--;
+		}
 		else{
 			System.out.println("No se ha removido proceso, PILA VACIA");
 		}
-}
+	}
 
-/** Devuelve el siguiente proceso a ser atendido. No lo remueve de la
+	/** Devuelve el siguiente proceso a ser atendido. No lo remueve de la
             pila
             @return devuelve la instancia de el SimpleProcess siguiente a 
             ser atendido. 
         **/
-public synchronized SimpleProcess next(){
-	if (this.pila.size()==0) {
-		return null;
-	}
+	public synchronized SimpleProcess next(){
+		if (this.pila.size()==0) {
+			return null;
+		}
 			return pila.peek();
 	}
+	/** @return el estado de la cola como String 
+    **/
+	public synchronized String toString(){
+        String result = this.pila.toString();
+        return result;
+    }
 
 }

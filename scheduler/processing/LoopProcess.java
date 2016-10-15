@@ -40,6 +40,6 @@ public class LoopProcess extends SimpleProcess{
 		@return devuelve un String de la forma [id:id_del_proceso+time:time_del_proceso]
 		**/
 		public String toString() {
-		return "[id:"+ this.id+" time: "+this.time+" Loop]";
+		return " [id:"+ this.id+" time: "+this.time+" Loop]";
 		}
 }

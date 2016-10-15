@@ -2,7 +2,7 @@
 	Esta clase representa la definicion abstracta de un proceso simple, el
         cual solo se compone de un id o numero de identificacion. Todas las clases 
         que representen tipos de procesos mas complejos deben heredar de esta clase
-
+        
 	@author Ing. Andrea Quan
 **/
 
@@ -33,7 +33,7 @@ public abstract class SimpleProcess {
 		@return devuelve un String de la forma [id:id_del_proceso]
 	**/	
 	public String toString() {
-		return "[id:"+ this.id+"]";
+		return "\n[id:"+ this.id+"]";
 	}
 
 }

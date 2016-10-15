@@ -59,4 +59,10 @@ public synchronized void add(SimpleProcess p){
 		if (this.cola.size() == 0) return null;
 			return cola.peek();
 		}
+		/** @return el estado de la cola como String 
+    	**/
+		public synchronized String toString(){
+        String result = this.cola.toString();
+        return result;
+    }
 }

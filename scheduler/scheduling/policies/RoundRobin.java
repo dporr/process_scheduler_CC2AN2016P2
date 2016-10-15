@@ -65,8 +65,7 @@ protected static LinkedList<SimpleProcess>lista;
             cola
             @return devuelve la instancia de el SimpleProcess siguiente a 
             ser atendido. 
-        **/
-
+    **/
 	public synchronized SimpleProcess next(){
 		SimpleProcess result = null;
 		if (this.lista.size() ==0){
@@ -78,6 +77,12 @@ protected static LinkedList<SimpleProcess>lista;
 				else{
 					result = this.lista.get(1);
 		}
-
-	return result;}
+	return result;
+	}
+	/** @return el estado de la cola como String 
+    **/
+	public synchronized String toString(){
+        String result = this.lista.toString();
+        return result;
+    }
 }
