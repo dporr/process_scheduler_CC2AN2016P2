@@ -95,7 +95,7 @@ public class ProcessScheduler extends Thread{
        		rrPolicy();
        	}
        }
-    private void rrPolicy(){
+    /**private void rrPolicy(){
     	do{
        		SimpleProcess next = politica.next();
        		ArithmeticProcess aP;
@@ -127,7 +127,8 @@ public class ProcessScheduler extends Thread{
        			System.out.print("Estado de la cola de proceso: "+politica.toString());
 			}
        	}while(true);
-    }
+    }**/
+    
     private void simplePolicy(){
        		do{
        			long t=0;
