@@ -90,6 +90,45 @@ public class ProcessScheduler extends Thread{
 	public void run(){
 		String p=this.nPolitica;
        if(!p.equalsIgnoreCase(RR)){
+       		simplePolicy();
+       	}else{
+       		rrPolicy();
+       	}
+       }
+    private void rrPolicy(){
+    	do{
+       		SimpleProcess next = politica.next();
+       		ArithmeticProcess aP;
+       		ConditionalProcess cP;
+       		LoopProcess lP;
+       		IOProcess ioP;
+
+       		if(next==null) continue;
+       		if(next instanceof ArithmeticProcess) next = aP = (ArithmeticProcess)next;
+       		if(next instanceof ConditionalProcess) next = cP = (ConditionalProcess)next;
+       		if(next instanceof LoopProcess) next =lP = (LoopProcess)next;
+       		if(next instanceof IOProcess) next = ioP = (IOProcess)next;
+       		System.out.println("Atendiendo: " + next);
+   			try{
+				this.sleep(quantum);
+			}catch(InterruptedException e){
+				System.out.println("Se ha detenido el proceso de forma abrupta");
+				System.exit(0);
+			}
+			long currTime=next.getTime();
+			next.setTime(currTime-quantum);
+			System.out.println(">>>>>"+next.getTime());
+			if((next.getTime()/quantum)>0){
+				politica.add(next);
+				politica.remove();
+			}else{
+				patendidos++;
+				System.out.print("Se ha removido un proceso: "+next);
+       			System.out.print("Estado de la cola de proceso: "+politica.toString());
+			}
+       	}while(true);
+    }
+    private void simplePolicy(){
        		do{
        			long t=0;
        			SimpleProcess next = politica.next();
@@ -110,8 +149,7 @@ public class ProcessScheduler extends Thread{
        			System.out.print("Se ha removido un proceso: "+next);
        			System.out.print("Estado de la cola de proceso: "+politica.toString());
        		}while(true);
-       	}
-       }
+    }   
 	public ProcessScheduler(long aTime, long lTime, long cTime,
 	 		 long ioTime, double lowTime, double upTime, String nPolitica,long quantum) {
         this.aTime = aTime;
